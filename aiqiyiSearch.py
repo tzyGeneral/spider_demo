@@ -5,6 +5,9 @@ from pyquery import PyQuery as pq
 
 
 class AutoIqiyi():
+    """
+    根据搜索词获取爱奇艺电影信息
+    """
     def __init__(self):
         self.header = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
