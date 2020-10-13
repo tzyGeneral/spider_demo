@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
-from django.conf import settings
+import os
+STATICFILES_DIRS = os.path.split(os.path.realpath(__file__))
 
 
 def pictureSynthesis(montherImg, sonImg, saveImg, coordinate=None):
@@ -15,9 +16,9 @@ def pictureSynthesis(montherImg, sonImg, saveImg, coordinate=None):
     # 需要拼接的二维码图片
     sImg = Image.open(sonImg)
     # 打开绿色勾的图片
-    greedImg = Image.open(settings.STATICFILES_DIRS[0]+'/ico_choice.png').convert('RGBA')
+    greedImg = Image.open(STATICFILES_DIRS[0]+'/ico_choice.png').convert('RGBA')
     # 打开章图片
-    zhangImg = Image.open(settings.STATICFILES_DIRS[0]+'/章.png').convert('RGBA')
+    zhangImg = Image.open(STATICFILES_DIRS[0]+'/章.png').convert('RGBA')
 
     # 给图片指定色彩显示格式
     mImg = mImg.convert("RGBA")
@@ -43,7 +44,7 @@ def pictureSynthesis(montherImg, sonImg, saveImg, coordinate=None):
     zhangImg = zhangImg.resize((int(sImg_w), int(sImg_w)), Image.ANTIALIAS)
 
     # 字体样式
-    textFont = ImageFont.truetype(settings.STATICFILES_DIRS[0]+'/STHeiti Light.ttc', int(textHeight))
+    textFont = ImageFont.truetype(STATICFILES_DIRS[0]+'/STHeiti Light.ttc', int(textHeight))
 
     draw.text(titleLocation, "水印打卡相机", "black", textFont)
     draw.text(renzheng, "认证编号：xxxxxxxxxxxxxxxxxxx", "black", textFont)
